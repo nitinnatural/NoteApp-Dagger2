@@ -1,6 +1,7 @@
 package com.example.stayaboard.presentation.screens.notes_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.stayaboard.R;
 import com.example.stayaboard.data.models.NoteItem;
 import com.example.stayaboard.presentation.StayAboardApplication;
+import com.example.stayaboard.presentation.screens.new_note.NewNoteActivity;
 
 import java.util.List;
 
@@ -126,10 +128,16 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
+                Intent intent = new Intent(NotesListActivity.this, NewNoteActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_btn_add_from_empty_layout:
+                intent = new Intent(NotesListActivity.this, NewNoteActivity.class);
+                startActivity(intent);
                 break;
             default:
+                intent = new Intent(NotesListActivity.this, NewNoteActivity.class);
+                startActivity(intent);
                 break;
         }
     }

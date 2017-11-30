@@ -1,9 +1,7 @@
 package com.example.stayaboard.data.source;
 
 import com.example.stayaboard.data.models.NoteItem;
-import com.example.stayaboard.presentation.StayAboardApplication;
-
-import java.util.List;
+import com.example.stayaboard.data.models.NoteItemList;
 
 import rx.Observable;
 
@@ -15,6 +13,6 @@ public interface NotesDataSource {
 
     public void saveNote(NoteItem noteItem);
     public Observable<NoteItem> getNoteByPosition(int position);
-    public Observable<List<NoteItem>> getAllNotes();
+    public Observable<NoteItemList> getAllNotes();
 
 }
