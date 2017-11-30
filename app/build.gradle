@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.stayaboard"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testCompile 'junit:junit:4.12'
+
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+    compile "io.reactivex:rxjava:$rootProject.rxJavaVersion"
+    compile "io.reactivex:rxandroid:$rootProject.rxAndroidVersion"
+
+    compile 'com.google.code.gson:gson:2.8.1'
+
+    compile "com.android.support:support-v4:$rootProject.appSupportVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.appSupportVersion"
+    compile "com.android.support:design:$rootProject.appSupportVersion"
+    compile "com.android.support:cardview-v7:$rootProject.appSupportVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.appSupportVersion"
+    compile 'com.google.dagger:dagger:2.8'
+    compile 'javax.inject:javax.inject:1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
