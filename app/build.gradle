@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.setUseSupportLibrary(true)
     }
     buildTypes {
         release {
@@ -35,6 +36,10 @@ dependencies {
     compile "io.reactivex:rxandroid:$rootProject.rxAndroidVersion"
 
     compile 'com.google.code.gson:gson:2.8.1'
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+
+    compile 'com.wang.avi:library:2.1.3'
 
     compile "com.android.support:support-v4:$rootProject.appSupportVersion"
     compile "com.android.support:appcompat-v7:$rootProject.appSupportVersion"

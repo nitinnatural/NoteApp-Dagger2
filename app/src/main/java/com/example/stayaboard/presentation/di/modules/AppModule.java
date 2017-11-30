@@ -12,6 +12,10 @@ import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+
+/**
+ * Created by Prakhar on 11/30/2017.
+ */
 @Module
 public class AppModule {
 

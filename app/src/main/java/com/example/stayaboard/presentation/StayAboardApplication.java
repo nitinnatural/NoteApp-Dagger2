@@ -6,6 +6,9 @@ import com.example.stayaboard.presentation.di.component.AppComponent;
 import com.example.stayaboard.presentation.di.component.DaggerAppComponent;
 import com.example.stayaboard.presentation.di.modules.AppModule;
 
+/**
+ * Created by Prakhar on 11/30/2017.
+ */
 
 public class StayAboardApplication extends Application {
 
