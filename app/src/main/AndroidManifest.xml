@@ -18,6 +18,15 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
+
+        <activity
+            android:name=".presentation.screens.new_note.NewNoteActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".presentation.screens.edit_note.EditNoteActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
