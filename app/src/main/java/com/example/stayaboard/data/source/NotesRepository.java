@@ -26,12 +26,12 @@ public class NotesRepository implements NotesDataSource {
     }
 
     @Override
-    public Observable<List<String>> getAllNotes() {
+    public Observable<List<NoteItem>> getAllNotes() {
         return null;
     }
 
     @Override
-    public Observable<String> getNoteByPosition(int position) {
+    public Observable<NoteItem> getNoteByPosition(int position) {
         return null;
     }
 

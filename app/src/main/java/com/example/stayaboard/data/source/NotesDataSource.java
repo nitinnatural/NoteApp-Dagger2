@@ -14,7 +14,7 @@ import rx.Observable;
 public interface NotesDataSource {
 
     public void saveNote(NoteItem noteItem);
-    public Observable<String> getNoteByPosition(int position);
-    public Observable<List<String>> getAllNotes();
+    public Observable<NoteItem> getNoteByPosition(int position);
+    public Observable<List<NoteItem>> getAllNotes();
 
 }
