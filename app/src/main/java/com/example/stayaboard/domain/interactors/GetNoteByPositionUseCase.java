@@ -1,5 +1,6 @@
 package com.example.stayaboard.domain.interactors;
 
+import com.example.stayaboard.data.models.NoteItem;
 import com.example.stayaboard.data.source.NotesRepository;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import javax.inject.Inject;
  * Created by Prakhar on 11/30/2017.
  */
 
-public class GetNoteByPositionUseCase extends BaseUseCase<GetNoteByPositionUseCase.RequestValues, String> {
+public class GetNoteByPositionUseCase extends BaseUseCase<GetNoteByPositionUseCase.RequestValues, NoteItem> {
 
     public NotesRepository mNotesRepository;
 
@@ -20,7 +21,7 @@ public class GetNoteByPositionUseCase extends BaseUseCase<GetNoteByPositionUseCa
     }
 
     @Override
-    public rx.Observable<String> execute(GetNoteByPositionUseCase.RequestValues requestValues) {
+    public rx.Observable<NoteItem> execute(GetNoteByPositionUseCase.RequestValues requestValues) {
         return mNotesRepository.getNoteByPosition(requestValues.position);
     }
 

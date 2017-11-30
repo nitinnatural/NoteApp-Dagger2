@@ -1,6 +1,9 @@
 package com.example.stayaboard.presentation.di.modules;
 
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import com.example.stayaboard.presentation.StayAboardApplication;
 import com.example.stayaboard.presentation.di.AppScope;
 
@@ -46,4 +49,10 @@ public class AppModule {
         return AndroidSchedulers.mainThread();
     }
 
+
+    @Provides
+    @AppScope
+    SharedPreferences providesSharedPreferences(StayAboardApplication application) {
+        return PreferenceManager.getDefaultSharedPreferences(application);
+    }
 }
