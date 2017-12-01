@@ -36,8 +36,8 @@ public class NewNoteActivity extends AppCompatActivity implements NewNoteContrac
     @BindView(R.id.et_new_note)
     EditText etNewNote;
 
-    @BindView(R.id.btn_add_note)
-    Button btnAddNote;
+    @BindView(R.id.tv_add_note)
+    TextView tvAddNote;
 
 
     @Inject
@@ -56,7 +56,7 @@ public class NewNoteActivity extends AppCompatActivity implements NewNoteContrac
 
     private void setViewsAndClickListners() {
         ivBackButton.setOnClickListener(this);
-        btnAddNote.setOnClickListener(this);
+        tvAddNote.setOnClickListener(this);
         tvToolbarTitle.setText("New Note");
     }
 
@@ -80,7 +80,7 @@ public class NewNoteActivity extends AppCompatActivity implements NewNoteContrac
             case R.id.iv_back:
                 onBackPressed();
                 break;
-            case R.id.btn_add_note:
+            case R.id.tv_add_note:
                 mNewNotePresenter.handleAddNewButtonClicked(etNewNote.getText().toString());
                 break;
         }

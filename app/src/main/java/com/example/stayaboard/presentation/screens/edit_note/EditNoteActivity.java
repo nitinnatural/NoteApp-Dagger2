@@ -34,8 +34,8 @@ public class EditNoteActivity extends AppCompatActivity implements EditNoteContr
     @BindView(R.id.et_edit_note)
     EditText etEditNote;
 
-    @BindView(R.id.btn_edit_done)
-    Button btnDone;
+    @BindView(R.id.tv_edit_done)
+    TextView tvDone;
 
     @Inject
     EditNotePresenter mEditNotePresenter;
@@ -60,7 +60,7 @@ public class EditNoteActivity extends AppCompatActivity implements EditNoteContr
 
     private void setViewsAndClickListners() {
         ivBackButton.setOnClickListener(this);
-        btnDone.setOnClickListener(this);
+        tvDone.setOnClickListener(this);
         tvToolbarTitle.setText("Edit Note");
     }
 
@@ -82,7 +82,7 @@ public class EditNoteActivity extends AppCompatActivity implements EditNoteContr
             case R.id.iv_back:
                 onBackPressed();
                 break;
-            case R.id.btn_edit_done:
+            case R.id.tv_edit_done:
                 mEditNotePresenter.handleEditDoneButtonClicked(isNoteChanged,position,etEditNote.getText().toString());
                 break;
         }

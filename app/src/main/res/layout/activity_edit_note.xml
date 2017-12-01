@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:orientation="vertical">
 
@@ -24,14 +25,27 @@
             android:textColor="@android:color/black"
             android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/btn_edit_done"
-            android:padding="16dp"
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_green_curved_bg"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/gen_margin" />
+            android:layout_margin="@dimen/gen_margin">
 
+            <TextView
+                android:id="@+id/tv_edit_done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_green_curved_bg"
+                android:padding="16dp" />
+
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_check_white_24dp" />
+
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
