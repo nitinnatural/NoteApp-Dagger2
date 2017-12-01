@@ -12,10 +12,14 @@ import com.example.stayaboard.presentation.screens.notes_list.NotesListContract;
 public interface NewNoteContract {
     interface View  extends BaseView {
 
+        void doForEmptyNoteBody();
+
+        void doWhenNoteItemIsSuccesfullyAdded();
     }
 
     interface Presenter extends BasePresenter<NewNoteContract.View> {
 
 
+        void handleAddNewButtonClicked(String noteBody);
     }
 }

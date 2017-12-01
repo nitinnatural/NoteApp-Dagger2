@@ -3,15 +3,14 @@ package com.example.stayaboard.presentation.screens.notes_list;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +31,14 @@ import butterknife.ButterKnife;
  */
 
 public class NotesListActivity extends AppCompatActivity implements NotesListContract.View, View.OnClickListener {
+
+
+
+    @BindView(R.id.iv_back)
+    ImageButton ivBackButton;
+
+    @BindView(R.id.tv_title)
+    TextView tvToolbarTitle;
 
     @Inject
     NotesListPresenter mNotesListPresenter;
@@ -59,11 +66,14 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
 
         StayAboardApplication.getAppComponent().inject(this);
 
-        setOnClickListeners();
+
+        setViewsAndClickListeners();
 
     }
 
-    private void setOnClickListeners() {
+    private void setViewsAndClickListeners() {
+        tvToolbarTitle.setText("Notes");
+        ivBackButton.setVisibility(View.GONE);
         fabAddNote.setOnClickListener(this);
         btnAddFromEmptyLayout.setOnClickListener(this);
     }

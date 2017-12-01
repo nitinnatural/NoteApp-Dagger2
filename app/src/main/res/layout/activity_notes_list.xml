@@ -7,7 +7,18 @@
     android:fitsSystemWindows="true"
     tools:context=".presentation.screens.notes_list.NotesListActivity">
 
-    <include layout="@layout/content_notes_main" />
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/base_toolbar"
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_width="match_parent"/>
+
+
+    <include layout="@layout/content_notes_main"
+        android:layout_marginTop="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

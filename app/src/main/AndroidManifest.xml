@@ -20,12 +20,10 @@
         </activity>
 
         <activity
-            android:name=".presentation.screens.new_note.NewNoteActivity"
-            android:screenOrientation="portrait" />
+            android:name=".presentation.screens.new_note.NewNoteActivity" />
 
         <activity
-            android:name=".presentation.screens.edit_note.EditNoteActivity"
-            android:screenOrientation="portrait" />
+            android:name=".presentation.screens.edit_note.EditNoteActivity" />
 
     </application>
 

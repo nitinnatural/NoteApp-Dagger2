@@ -5,4 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_medium">16sp</dimen>
     <dimen name="text_normal">14sp</dimen>
+    <dimen name="toolbar_title">22sp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="gen_margin">16dp</dimen>
 </resources>
