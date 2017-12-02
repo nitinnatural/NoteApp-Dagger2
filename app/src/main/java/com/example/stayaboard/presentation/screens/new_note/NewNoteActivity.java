@@ -1,5 +1,6 @@
 package com.example.stayaboard.presentation.screens.new_note;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.example.stayaboard.R;
 import com.example.stayaboard.data.models.NoteItem;
 import com.example.stayaboard.data.source.NotesRepository;
 import com.example.stayaboard.presentation.StayAboardApplication;
+import com.example.stayaboard.presentation.screens.notes_list.NotesListActivity;
 
 import javax.inject.Inject;
 
@@ -94,8 +96,14 @@ public class NewNoteActivity extends AppCompatActivity implements NewNoteContrac
 
     @Override
     public void doWhenNoteItemIsSuccesfullyAdded() {
-        onBackPressed();
         Toast.makeText(NewNoteActivity.this, "Note Successfully Added!", Toast.LENGTH_LONG).show();
+        goToNotesListActivity();
+    }
+
+    private void goToNotesListActivity() {
+        Intent intent = new Intent(NewNoteActivity.this, NotesListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     @Override

@@ -7,6 +7,7 @@ package com.example.stayaboard.presentation.screens.notes_list;
 import android.content.Context;
 import android.graphics.Paint;
 import android.support.v7.widget.AppCompatRadioButton;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.stayaboard.R;
 import com.example.stayaboard.data.models.NoteItem;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -26,11 +31,11 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Hold
     private Context mContext;
     private List<NoteItem> mNotesList;
     private NotesListAdapterListener mListener;
-    
 
-    public NotesListAdapter(Context c, List<NoteItem> shoppingList, NotesListAdapterListener listener) {
+
+    public NotesListAdapter(Context c, List<NoteItem> notesList, NotesListAdapterListener listener) {
         this.mContext = c;
-        this.mNotesList = shoppingList;
+        this.mNotesList = notesList;
         this.mListener = listener;
 
     }
@@ -44,31 +49,37 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Hold
 
     @Override
     public void onBindViewHolder(Holder h, final int position) {
-        NoteItem item = mNotesList.get(position);
+        final NoteItem item = mNotesList.get(position);
 
+        h.tvTitle.setText(item.getNoteTitle());
+        h.tvTime.setText(convertMilliSecondsToFormattedDate(item.getCurrentTime()));
+        h.tvContent.setText(item.getNoteBody());
 
-
+        h.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onItemClick(item.getNoteBody(), position);
+            }
+        });
     }
 
 
     public interface NotesListAdapterListener {
-        void onItemClick(NoteItem shoppingItem);
+        void onItemClick(String noteBody, int position);
     }
 
 
     public class Holder extends RecyclerView.ViewHolder {
 
-        AppCompatRadioButton cbDone;
-        EditText etNotesItem;
-        ImageView ivRemoveItem;
-        FrameLayout btnDone;
-        
+        TextView tvTitle, tvTime, tvContent;
+        CardView container;
 
         public Holder(View v) {
             super(v);
-
-
-     
+            tvTitle = v.findViewById(R.id.tv_title);
+            tvTime = v.findViewById(R.id.tv_time);
+            tvContent = v.findViewById(R.id.tv_content);
+            container = v.findViewById(R.id.cardview_note_container);
         }
 
     }
@@ -81,7 +92,9 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Hold
 
     @Override
     public int getItemCount() {
-        return mNotesList.size();
+        if (mNotesList != null)
+            return mNotesList.size();
+        else return 0;
     }
 
     public Boolean isNotesListItemNotEmpty(String itemName) {
@@ -91,4 +104,14 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Hold
             return false;
     }
 
+
+    public static String convertMilliSecondsToFormattedDate(long milliSeconds) {
+        String dateFormat = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return simpleDateFormat.format(calendar.getTime());
+    }
 }
+

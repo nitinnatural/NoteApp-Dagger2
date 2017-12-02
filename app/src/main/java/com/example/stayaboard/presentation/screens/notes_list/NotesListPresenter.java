@@ -1,5 +1,7 @@
 package com.example.stayaboard.presentation.screens.notes_list;
 
+import android.util.Log;
+
 import com.example.stayaboard.data.models.NoteItem;
 import com.example.stayaboard.data.models.NoteItemList;
 import com.example.stayaboard.domain.interactors.GetAllNotesUseCase;
@@ -51,31 +53,33 @@ public class NotesListPresenter implements NotesListContract.Presenter {
     }
 
     @Override
-    public void handleItemClick(NoteItem noteItem) {
-
+    public void handleItemClick(String noteBody, int position) {
+        mView.moveToEditNoteScreen(noteBody, position);
     }
 
     @Override
     public void loadData() {
-        mGetAllNotesUseCase.execute().subscribeOn(threadScheduler)
+        mGetAllNotesUseCase.execute()
+                .subscribeOn(threadScheduler)
                 .observeOn(postExecutionScheduler)
                 .subscribe(new Subscriber<NoteItemList>() {
                     @Override
                     public void onCompleted() {
-
+                        Log.d("tag","completed");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.d("tag",e.getLocalizedMessage());
                     }
 
                     @Override
                     public void onNext(NoteItemList noteItemList) {
                         if (mView == null) return;
-                        if (noteItemList.getList() != null && noteItemList.getList().size() > 0){
+                        if (noteItemList.getList() != null && noteItemList.getList().size() > 0) {
                             mView.toggleEmptyNotesList(false);
-                        }else{
+                            mView.loadDataIntoAdapter(noteItemList);
+                        } else {
                             mView.toggleEmptyNotesList(true);
                         }
                     }

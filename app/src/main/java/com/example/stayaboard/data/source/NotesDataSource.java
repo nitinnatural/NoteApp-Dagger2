@@ -12,6 +12,7 @@ import rx.Observable;
 public interface NotesDataSource {
 
     public void saveNote(NoteItem noteItem);
+    public Observable<Boolean> editNote(String noteBody, int position);
     public Observable<NoteItem> getNoteByPosition(int position);
     public Observable<NoteItemList> getAllNotes();
 

@@ -31,13 +31,14 @@ public class NotesRepository implements NotesDataSource {
     @Inject
     public NotesRepository(SharedPreferences sharedPreferences) {
         mSharedPreferences = sharedPreferences;
-        mNoteItemList = new NoteItemList();
     }
 
 
-    public void saveNotesIntoPreference(NoteItem noteItem) {
+    public void saveNoteIntoPreference(NoteItem noteItem) {
 
-        mNoteItemList = getSavedNotesFromSharedPreference();
+        if (mNoteItemList == null) {
+            mNoteItemList = new NoteItemList(getSavedNotesFromSharedPreference());
+        }
         mNoteItemList.getList().add(noteItem);
 
         String json = mNoteItemList == null ? null : new Gson().toJson(mNoteItemList);
@@ -45,6 +46,14 @@ public class NotesRepository implements NotesDataSource {
         prefEditor.putString(Constants.CUSTOM_NOTES_LIST_OBJECT, json);
         prefEditor.commit();
     }
+
+    public void saveNotesListIntoPreference(NoteItemList noteItemList) {
+        String json = noteItemList == null ? null : new Gson().toJson(noteItemList);
+        SharedPreferences.Editor prefEditor = mSharedPreferences.edit();
+        prefEditor.putString(Constants.CUSTOM_NOTES_LIST_OBJECT, json);
+        prefEditor.commit();
+    }
+
 
     public NoteItemList getSavedNotesFromSharedPreference() {
         String json = null;
@@ -58,6 +67,9 @@ public class NotesRepository implements NotesDataSource {
 
     @Override
     public Observable<NoteItemList> getAllNotes() {
+        if (mNoteItemList == null) {
+            mNoteItemList = new NoteItemList(getSavedNotesFromSharedPreference());
+        }
         return Observable.just(mNoteItemList);
     }
 
@@ -68,6 +80,22 @@ public class NotesRepository implements NotesDataSource {
 
     @Override
     public void saveNote(NoteItem noteItem) {
-        saveNotesIntoPreference(noteItem);
+        saveNoteIntoPreference(noteItem);
     }
+
+    public Observable<Boolean> editNote(String noteBody, int position) {
+        //edited
+        if (mNoteItemList.getList().get(position).getNoteBody().equalsIgnoreCase(noteBody) == false) {
+            mNoteItemList.getList().get(position).setNoteBody(noteBody);
+            SharedPreferences.Editor prefEditor = mSharedPreferences.edit();
+            prefEditor.clear();
+
+            saveNotesListIntoPreference(mNoteItemList);
+
+            return Observable.just(true);
+        } else {//not edited
+            return Observable.just(false);
+        }
+    }
+
 }

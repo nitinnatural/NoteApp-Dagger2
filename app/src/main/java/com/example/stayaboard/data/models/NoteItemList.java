@@ -7,6 +7,11 @@ import java.util.ArrayList;
  */
 
 public class NoteItemList {
+    public NoteItemList(NoteItemList savedNotesFromSharedPreference) {
+        list= new ArrayList<>();
+        list.addAll(savedNotesFromSharedPreference.getList());
+    }
+
     public ArrayList<NoteItem> getList() {
         return list;
     }

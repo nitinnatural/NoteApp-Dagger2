@@ -15,8 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stayaboard.R;
+import com.example.stayaboard.common.Constants;
 import com.example.stayaboard.data.models.NoteItem;
+import com.example.stayaboard.data.models.NoteItemList;
 import com.example.stayaboard.presentation.StayAboardApplication;
+import com.example.stayaboard.presentation.screens.edit_note.EditNoteActivity;
 import com.example.stayaboard.presentation.screens.new_note.NewNoteActivity;
 
 import java.util.List;
@@ -33,7 +36,6 @@ import butterknife.ButterKnife;
 public class NotesListActivity extends AppCompatActivity implements NotesListContract.View, View.OnClickListener {
 
 
-
     @BindView(R.id.iv_back)
     ImageButton ivBackButton;
 
@@ -44,6 +46,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
     NotesListPresenter mNotesListPresenter;
 
     List<NoteItem> NotesList;
+
     NotesListAdapter mAdapterNotesList;
 
     @BindView(R.id.rv_notes_list)
@@ -56,7 +59,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
     FloatingActionButton fabAddNote;
 
     @BindView(R.id.view_empty_notes_list)
-    View viewEmptyShoppingList;
+    View viewEmptyNotesList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +68,6 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
         ButterKnife.bind(this);
 
         StayAboardApplication.getAppComponent().inject(this);
-
 
         setViewsAndClickListeners();
 
@@ -99,22 +101,23 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
 
 
             rvNotesList.setVisibility(View.GONE);
-            viewEmptyShoppingList.setVisibility(View.VISIBLE);
+            viewEmptyNotesList.setVisibility(View.VISIBLE);
         } else {
             rvNotesList.setVisibility(View.VISIBLE);
-            viewEmptyShoppingList.setVisibility(View.GONE);
+            viewEmptyNotesList.setVisibility(View.GONE);
         }
     }
 
 
     @Override
-    public void loadNotesList() {
+    public void loadDataIntoAdapter(NoteItemList noteItemList) {
+        NotesList = noteItemList.getList();
         mAdapterNotesList = new NotesListAdapter(this, NotesList,
                 new NotesListAdapter.NotesListAdapterListener() {
 
                     @Override
-                    public void onItemClick(NoteItem noteItem) {
-                        mNotesListPresenter.handleItemClick(noteItem);
+                    public void onItemClick(String noteBody, int position) {
+                        mNotesListPresenter.handleItemClick(noteBody, position);
                     }
 
                 });
@@ -122,6 +125,15 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
         rvNotesList.setAdapter(mAdapterNotesList);
         rvNotesList.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    @Override
+    public void moveToEditNoteScreen(String noteBody, int position) {
+        Intent intent = new Intent(NotesListActivity.this, EditNoteActivity.class);
+        intent.putExtra(Constants.KEY_NOTE_BODY, noteBody);
+        intent.putExtra(Constants.KEY_NOTE_POSITION, position);
+        startActivity(intent);
+    }
+
 
     @Override
     public void showError(String msg) {

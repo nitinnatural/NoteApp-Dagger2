@@ -11,10 +11,12 @@ public interface EditNoteContract {
     interface View extends BaseView {
 
         void doWhenNoteIsNotChanged();
+
+        void doWhenNoteIsChanged();
     }
 
     interface Presenter extends BasePresenter<EditNoteContract.View> {
 
-        void handleEditDoneButtonClicked(boolean isNoteChanged, int position, String noteBody);
+        void handleEditDoneButtonClicked(int position, String noteBody);
     }
 }

@@ -7,4 +7,7 @@ package com.example.stayaboard.common;
 public class Constants {
 
     public static final String CUSTOM_NOTES_LIST_OBJECT = "CUSTOM_NOTES_LIST_OBJECT";
+
+    public static final String KEY_NOTE_BODY = "noteBody";
+    public static final String KEY_NOTE_POSITION = "notePosition";
 }
