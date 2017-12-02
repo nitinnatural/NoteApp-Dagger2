@@ -19,10 +19,11 @@ public class NewNotePresenter implements NewNoteContract.Presenter {
 
     NewNoteContract.View mView;
 
+    SaveNoteUseCase mSaveNoteUseCase;
+
+
     private final Scheduler threadScheduler;
     private final Scheduler postExecutionScheduler;
-
-    SaveNoteUseCase mSaveNoteUseCase;
 
     @Inject
     public NewNotePresenter(@Named("Thread") Scheduler threadScheduler,

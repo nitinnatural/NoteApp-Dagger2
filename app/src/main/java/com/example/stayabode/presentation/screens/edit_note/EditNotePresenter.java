@@ -21,10 +21,11 @@ public class EditNotePresenter implements EditNoteContract.Presenter {
 
     EditNoteContract.View mView;
 
+    EditNoteUseCase mEditNoteUseCase;
+
+    String mSavedNoteBody;
     private final Scheduler threadScheduler;
     private final Scheduler postExecutionScheduler;
-    EditNoteUseCase mEditNoteUseCase;
-    String mSavedNoteBody;
 
     @Inject
     public EditNotePresenter(@Named("Thread") Scheduler threadScheduler,
