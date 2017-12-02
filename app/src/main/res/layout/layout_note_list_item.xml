@@ -34,7 +34,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="@dimen/gen_margin"
-                    android:text="nfrwmfkwmefpk"
                     android:textColor="@color/colorPrimary" />
 
 
@@ -44,13 +43,17 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/gen_margin"
-                    android:text="nfrwmfkwmefpk" />
+                    android:textSize="@dimen/text_normal"/>
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@android:color/black"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:maxEms="80"
                 android:layout_margin="@dimen/gen_margin" />
 
         </LinearLayout>
