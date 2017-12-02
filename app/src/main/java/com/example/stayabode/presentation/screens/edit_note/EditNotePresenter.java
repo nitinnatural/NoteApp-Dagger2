@@ -47,8 +47,6 @@ public class EditNotePresenter implements EditNoteContract.Presenter {
 
     @Override
     public void handleEditDoneButtonClicked(int position, final String noteBody) {
-
-
         mEditNoteUseCase.execute(new EditNoteUseCase.RequestValues(noteBody, position))
                 .subscribeOn(threadScheduler)
                 .observeOn(postExecutionScheduler)
