@@ -29,7 +29,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/colorPrimary"
         app:borderWidth="0dp"
-        android:tint="#ffffff"
+        android:tint="#e7ebf7"
         app:elevation="6dp"
         app:fabSize="normal" />
 

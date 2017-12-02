@@ -59,20 +59,24 @@ public class NotesListPresenter implements NotesListContract.Presenter {
                 .subscribe(new Subscriber<NoteItemList>() {
                     @Override
                     public void onCompleted() {
-                        Log.d("tag","completed");
+                        Log.d("tag", "completed");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("tag",e.getLocalizedMessage());
+                        Log.d("tag", e.getLocalizedMessage());
                     }
 
                     @Override
                     public void onNext(NoteItemList noteItemList) {
                         if (mView == null) return;
-                        if (noteItemList.getList() != null && noteItemList.getList().size() > 0) {
-                            mView.toggleEmptyNotesList(false);
-                            mView.loadDataIntoAdapter(noteItemList);
+                        if (noteItemList != null) {
+                            if (noteItemList.getList() != null && noteItemList.getList().size() > 0) {
+                                mView.toggleEmptyNotesList(false);
+                                mView.loadDataIntoAdapter(noteItemList);
+                            } else {
+                                mView.toggleEmptyNotesList(true);
+                            }
                         } else {
                             mView.toggleEmptyNotesList(true);
                         }

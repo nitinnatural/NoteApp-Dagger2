@@ -14,6 +14,13 @@ public class NoteItemList {
         }
     }
 
+    public NoteItemList(ArrayList savedNotesFromSharedPreference) {
+        list = new ArrayList<>();
+        if (savedNotesFromSharedPreference != null) {
+            list.addAll(savedNotesFromSharedPreference);
+        }
+    }
+
     public ArrayList<NoteItem> getList() {
         return list;
     }

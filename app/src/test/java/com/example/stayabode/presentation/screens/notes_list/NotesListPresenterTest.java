@@ -1,5 +1,6 @@
 package com.example.stayabode.presentation.screens.notes_list;
 
+import com.example.stayabode.data.models.NoteItem;
 import com.example.stayabode.data.models.NoteItemList;
 import com.example.stayabode.domain.interactors.EditNoteUseCase;
 import com.example.stayabode.domain.interactors.GetAllNotesUseCase;
@@ -9,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
 
 import rx.Observable;
 import rx.schedulers.Schedulers;
@@ -47,7 +50,7 @@ public class NotesListPresenterTest {
 
 
     @Test
-    public void loadingData_ListSizeZeoORNull_ShowLayoutForEmptyList() {
+    public void loadingData_ListObjectNull_ShowLayoutForEmptyList() {
         //before
 
         when(mGetAllNotesUseCase.execute()).thenReturn(Observable.<NoteItemList>just(null));
@@ -62,5 +65,21 @@ public class NotesListPresenterTest {
 
     }
 
+    @Test
+    public void loadingData_ListObjectNotNull_AndListSizeGreaterThanZero_ShowLayoutForEmptyList() {
+        //before
+        ArrayList<String> demoList = new ArrayList<>();
+        demoList.add("lorem ipsum 1");
+        demoList.add("loren ipsum 2");
+        NoteItemList noteItemList = new NoteItemList(demoList);
+        when(mGetAllNotesUseCase.execute()).thenReturn(Observable.just(noteItemList));
+
+        //call
+        mNotesListPresenter.loadData();
+
+        //verify
+        verify(mView).toggleEmptyNotesList(false);
+
+    }
 
 }
