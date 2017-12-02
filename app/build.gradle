@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.example.stayabode"
         minSdkVersion 16
@@ -22,6 +23,9 @@ android {
                 proguardFile 'proguard-rules.pro'
             }
         }
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 }
 

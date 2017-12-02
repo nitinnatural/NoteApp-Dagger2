@@ -46,7 +46,7 @@ public class NewNotePresenter implements NewNoteContract.Presenter {
 
     @Override
     public void handleAddNewButtonClicked(String noteBody) {
-        if (!TextUtils.isEmpty(noteBody)) {
+        if (noteBody != null && noteBody.length() > 0) {
             NoteItem noteItem = new NoteItem();
             noteItem.setNoteTitle("Title");
             noteItem.setNoteBody(noteBody);

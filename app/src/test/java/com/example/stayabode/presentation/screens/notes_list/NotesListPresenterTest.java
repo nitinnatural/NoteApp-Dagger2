@@ -4,10 +4,13 @@ import com.example.stayabode.domain.interactors.GetAllNotesUseCase;
 import com.example.stayabode.domain.interactors.GetNoteByPositionUseCase;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import rx.schedulers.Schedulers;
+
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by Prakhar on 12/2/2017.
@@ -41,6 +44,21 @@ public class NotesListPresenterTest {
     }
 
 
+
+    @Test
+    public void tapOnLocateMe_GpsSettingsNotAvailable_ShowAutoLocateError() {
+        //before
+
+        //call
+      /*  mLocationSelectPresenter.handleAutoLocateClicked();
+
+        verify(perpuleLocationManager).getNewGPSLocation(mLocationAvailableListenerCaptor.capture());
+        mLocationAvailableListenerCaptor.getValue().onLocationNotFound();
+*/
+        //verify
+  /*      verify(mView).showAutoLocateError();*/
+
+    }
 
 
 }

@@ -1,14 +1,19 @@
 package com.example.stayabode.presentation.screens.new_note;
 
+import android.text.TextUtils;
+
 import com.example.stayabode.domain.interactors.SaveNoteUseCase;
 import com.example.stayabode.presentation.screens.edit_note.EditNotePresenter;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import rx.Scheduler;
 import rx.schedulers.Schedulers;
+
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by Prakhar on 12/2/2017.
@@ -22,6 +27,8 @@ public class NewNotePresenterTest {
     @Mock
     private SaveNoteUseCase mSaveNoteUseCase;
 
+    @Mock
+    TextUtils textUtils;
     private NewNotePresenter mNewNotePresenter;
 
 
@@ -38,4 +45,31 @@ public class NewNotePresenterTest {
         mNewNotePresenter.attachView(mView);
     }
 
+
+    @Test
+    public void tapOnAddNoteButton_BodyIsEmpty_ShowEmptyBodyErrorMessage() {
+        //before
+        String noteBody = "";
+
+        //call
+        mNewNotePresenter.handleAddNewButtonClicked(noteBody);
+
+        //verify
+        verify(mView).doForEmptyNoteBody();
+
+    }
+
+
+    @Test
+    public void tapOnAddNoteButton_BodyIsNotEmpty_ShowNoteSavedMesaage() {
+        //before
+        String noteBody = "random lorem ipsum";
+
+        //call
+        mNewNotePresenter.handleAddNewButtonClicked(noteBody);
+
+        //verify
+        verify(mView).doWhenNoteItemIsSuccesfullyAdded();
+
+    }
 }
