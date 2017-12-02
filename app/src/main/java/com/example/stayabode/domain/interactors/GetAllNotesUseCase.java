@@ -2,6 +2,7 @@ package com.example.stayabode.domain.interactors;
 
 import com.example.stayabode.data.models.NoteItemList;
 import com.example.stayabode.data.source.NotesRepository;
+import com.example.stayabode.domain.interactors.base_use_cases.BaseUseCaseNoRequest;
 
 import javax.inject.Inject;
 

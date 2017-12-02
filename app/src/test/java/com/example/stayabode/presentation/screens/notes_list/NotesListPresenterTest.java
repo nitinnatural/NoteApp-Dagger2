@@ -1,16 +1,21 @@
 package com.example.stayabode.presentation.screens.notes_list;
 
+import com.example.stayabode.data.models.NoteItemList;
+import com.example.stayabode.domain.interactors.EditNoteUseCase;
 import com.example.stayabode.domain.interactors.GetAllNotesUseCase;
-import com.example.stayabode.domain.interactors.GetNoteByPositionUseCase;
+
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import rx.Observable;
 import rx.schedulers.Schedulers;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Prakhar on 12/2/2017.
@@ -23,8 +28,6 @@ public class NotesListPresenterTest {
     private NotesListContract.View mView;
     @Mock
     private GetAllNotesUseCase mGetAllNotesUseCase;
-    @Mock
-    private GetNoteByPositionUseCase mGetNoteByPositionUseCase;
 
     private NotesListPresenter mNotesListPresenter;
 
@@ -37,26 +40,25 @@ public class NotesListPresenterTest {
 
         // Get a reference to the class under test
         mNotesListPresenter = new NotesListPresenter(mGetAllNotesUseCase,
-                mGetNoteByPositionUseCase,
                 Schedulers.immediate(),
                 Schedulers.immediate());
         mNotesListPresenter.attachView(mView);
     }
 
 
-
     @Test
-    public void tapOnLocateMe_GpsSettingsNotAvailable_ShowAutoLocateError() {
+    public void loadingData_ListSizeZeoORNull_ShowLayoutForEmptyList() {
         //before
 
-        //call
-      /*  mLocationSelectPresenter.handleAutoLocateClicked();
+        when(mGetAllNotesUseCase.execute()).thenReturn(Observable.<NoteItemList>just(null));
 
-        verify(perpuleLocationManager).getNewGPSLocation(mLocationAvailableListenerCaptor.capture());
-        mLocationAvailableListenerCaptor.getValue().onLocationNotFound();
-*/
+
+        //call
+        mNotesListPresenter.loadData();
+
+
         //verify
-  /*      verify(mView).showAutoLocateError();*/
+        verify(mView).toggleEmptyNotesList(true);
 
     }
 

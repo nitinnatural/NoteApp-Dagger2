@@ -2,10 +2,7 @@ package com.example.stayabode.presentation.screens.edit_note;
 
 import android.util.Log;
 
-import com.example.stayabode.data.models.NoteItem;
-import com.example.stayabode.data.source.NotesRepository;
 import com.example.stayabode.domain.interactors.EditNoteUseCase;
-import com.example.stayabode.domain.interactors.GetNoteByPositionUseCase;
 
 import javax.inject.Inject;
 import javax.inject.Named;

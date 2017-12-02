@@ -1,4 +1,4 @@
-package com.example.stayabode.domain.interactors;
+package com.example.stayabode.domain.interactors.base_use_cases;
 
 /**
  * Created by Prakhar on 11/30/2017.

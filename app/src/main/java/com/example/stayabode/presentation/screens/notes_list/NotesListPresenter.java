@@ -2,12 +2,8 @@ package com.example.stayabode.presentation.screens.notes_list;
 
 import android.util.Log;
 
-import com.example.stayabode.data.models.NoteItem;
 import com.example.stayabode.data.models.NoteItemList;
 import com.example.stayabode.domain.interactors.GetAllNotesUseCase;
-import com.example.stayabode.domain.interactors.GetNoteByPositionUseCase;
-
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,7 +20,7 @@ public class NotesListPresenter implements NotesListContract.Presenter {
     NotesListContract.View mView;
 
     GetAllNotesUseCase mGetAllNotesUseCase;
-    GetNoteByPositionUseCase mGetNoteByPositionUseCase;
+
 
     private final Scheduler threadScheduler;
     private final Scheduler postExecutionScheduler;
@@ -32,11 +28,9 @@ public class NotesListPresenter implements NotesListContract.Presenter {
 
     @Inject
     public NotesListPresenter(GetAllNotesUseCase getAllNotesUseCase,
-                              GetNoteByPositionUseCase getNoteByPositionUseCase,
                               @Named("Thread") Scheduler threadScheduler,
                               @Named("PostExecution") Scheduler postExecutionScheduler) {
         mGetAllNotesUseCase = getAllNotesUseCase;
-        mGetNoteByPositionUseCase = getNoteByPositionUseCase;
         this.threadScheduler = threadScheduler;
         this.postExecutionScheduler = postExecutionScheduler;
 

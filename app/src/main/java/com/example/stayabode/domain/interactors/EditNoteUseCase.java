@@ -1,6 +1,7 @@
 package com.example.stayabode.domain.interactors;
 
 import com.example.stayabode.data.source.NotesRepository;
+import com.example.stayabode.domain.interactors.base_use_cases.BaseUseCase;
 
 import javax.inject.Inject;
 

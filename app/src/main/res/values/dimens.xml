@@ -8,4 +8,5 @@
     <dimen name="toolbar_title">20sp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="gen_margin">16dp</dimen>
+    <dimen name="text_small">12sp</dimen>
 </resources>
