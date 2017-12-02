@@ -9,6 +9,7 @@
         android:id="@+id/cardview_note_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="@dimen/gen_margin"
         android:layout_marginLeft="@dimen/gen_margin"
         android:layout_marginRight="@dimen/gen_margin"

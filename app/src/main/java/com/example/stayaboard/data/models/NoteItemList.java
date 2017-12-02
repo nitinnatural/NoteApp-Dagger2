@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 public class NoteItemList {
     public NoteItemList(NoteItemList savedNotesFromSharedPreference) {
-        list= new ArrayList<>();
-        list.addAll(savedNotesFromSharedPreference.getList());
+        list = new ArrayList<>();
+        if (savedNotesFromSharedPreference != null) {
+            list.addAll(savedNotesFromSharedPreference.getList());
+        }
     }
 
     public ArrayList<NoteItem> getList() {
