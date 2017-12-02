@@ -53,8 +53,12 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Hold
 
         h.tvTitle.setText(item.getNoteTitle());
         h.tvTime.setText(convertMilliSecondsToFormattedDate(item.getCurrentTime()));
-        h.tvContent.setText(item.getNoteBody());
 
+        if (item.getNoteBody().length() > 100) {
+            h.tvContent.setText(item.getNoteBody().substring(0, 97) + "... ");
+        } else {
+            h.tvContent.setText(item.getNoteBody());
+        }
         h.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
